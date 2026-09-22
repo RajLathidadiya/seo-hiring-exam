@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: seo-hiring-exam
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_KEY
+        sync: false
