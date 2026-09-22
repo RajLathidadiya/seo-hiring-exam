@@ -90,7 +90,7 @@ app.patch("/api/admin/candidates/:id",admin,async(req,res)=>{
  res.json(r.rows[0]);
 });
 app.get("/admin",(req,res)=>res.sendFile(path.join(__dirname,"public","admin.html")));
-app.get("*",(req,res)=>res.sendFile(path.join(__dirname,"public","index.html")));
+app.get("/{*splat}",(req,res)=>res.sendFile(path.join(__dirname,"public","index.html")));
 
 const PORT=process.env.PORT||10000;
 init().then(()=>app.listen(PORT,()=>console.log(`SEO Hire running on ${PORT}`))).catch(e=>{console.error(e);process.exit(1)});
