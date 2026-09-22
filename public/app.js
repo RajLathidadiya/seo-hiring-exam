@@ -52,7 +52,22 @@ function render(){
   `).join("");
 }
 
-$("paper").onsubmit=e=>{e.preventDefault();submit();};
+$("paper").onsubmit=e=>{
+  e.preventDefault();
+  // Check all 30 MCQs are answered
+  let unanswered=[];
+  questions.forEach((_,i)=>{
+    if(!document.querySelector(`input[name="q${i}"]:checked`)) unanswered.push(i+1);
+  });
+  if(unanswered.length>0){
+    let msg=`Please answer all MCQ questions before submitting.\nUnanswered: Q${unanswered.slice(0,5).join(', Q')}${unanswered.length>5?' ...and '+(unanswered.length-5)+' more':''}`;
+    alert(msg);
+    let el=document.querySelector(`input[name="q${unanswered[0]-1}"]`);
+    if(el) el.closest('.q').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  submit();
+};
 
 async function submit(){
   const btn=$("submitBtn");
@@ -69,7 +84,7 @@ async function submit(){
     clearInterval(tm);
     $("exam").hidden=true;
     $("done").hidden=false;
-    $("doneText").textContent="Your submission ID is #"+d.id+". MCQ Score: "+d.mcqScore+" / 30.";
+    $("doneText").textContent="Your submission ID is #"+d.id+". Our team will review your answers and contact you with the results shortly.";
     window.scrollTo(0,0);
   }catch(err){
     if(btn){btn.disabled=false;btn.textContent="Submit Assessment →";}
