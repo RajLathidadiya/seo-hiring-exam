@@ -3,6 +3,8 @@ const $=x=>document.getElementById(x);
 
 fetch("/api/questions").then(r=>r.json()).then(d=>shortsQ=d.shorts);
 
+function autoBadge(val){ return `<span style="font-size:10px;background:#f0fdf4;color:#15803d;border:1px solid #86efac;border-radius:4px;padding:1px 5px;font-weight:700">AUTO</span> ${val}`; }
+
 async function load(){
   key=$("key").value.trim();
   if(!key) return alert("Enter admin key");
@@ -70,22 +72,22 @@ function detail(id){
   let x=data.find(z=>z.id===id);
   let total=x.mcq_score+x.written_score+x.practical_score+x.interview_score;
   let mcqAnswers=x.mcq_answers||[];
+  let wb=x.written_breakdown||[];
+  let pb=x.practical_breakdown||{};
   $("detail").style.display="block";
   $("detail").innerHTML=`
     <div class="detail-card">
       <div class="detail-topbar">
-        <div>
-          <h2>${esc(x.name)} — Submission #${x.id}</h2>
-        </div>
+        <div><h2>${esc(x.name)} — Submission #${x.id}</h2></div>
         <button class="close-btn" onclick="$('detail').style.display='none';window.scrollTo(0,0)">✕ Close</button>
       </div>
       <div class="detail-meta">${esc(x.email)} · ${esc(x.mobile)} · Submitted: ${new Date(x.created_at).toLocaleString("en-IN")}</div>
 
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px">
-        <div class="stat-card" style="min-width:110px"><b>${x.mcq_score}/30</b><span>MCQ</span></div>
-        <div class="stat-card" style="min-width:110px"><b>${x.written_score}/20</b><span>Written</span></div>
-        <div class="stat-card" style="min-width:110px"><b>${x.practical_score}/30</b><span>Practical</span></div>
-        <div class="stat-card" style="min-width:110px"><b>${x.interview_score}/20</b><span>Interview</span></div>
+        <div class="stat-card" style="min-width:110px"><b>${x.mcq_score}/30</b><span>MCQ (Auto)</span></div>
+        <div class="stat-card" style="min-width:110px"><b>${x.written_score}/20</b><span>Written (Auto)</span></div>
+        <div class="stat-card" style="min-width:110px"><b>${x.practical_score}/30</b><span>Practical (Auto)</span></div>
+        <div class="stat-card" style="min-width:110px"><b>${x.interview_score}/20</b><span>Interview (Manual)</span></div>
         <div class="stat-card" style="min-width:110px;background:#f0fdf4;border-color:#bbf7d0"><b>${total}/100</b><span>Total</span></div>
       </div>
 
@@ -101,19 +103,34 @@ function detail(id){
         }).join("")}
       </div>
 
-      <div class="section-title">Part 2 — Short Answers</div>
+      <div class="section-title">Part 2 — Short Answers <span style="font-size:12px;font-weight:400;color:#64748b">(Auto-scored — Admin can override in table above)</span></div>
       ${(x.written||[]).map((v,i)=>`
-        <div class="q-label">${31+i}. ${esc(shortsQ[i]||"Short question")}</div>
-        <div class="answer-box">${esc(v)||"<em style='color:#94a3b8'>No answer</em>"}</div>
+        <div class="q-label" style="display:flex;align-items:center;justify-content:space-between">
+          <span>${31+i}. ${esc(shortsQ[i]||"Short question")}</span>
+          <span style="font-size:13px;font-weight:700;color:#0f766e">${wb[i]!==undefined?wb[i]:"-"}/4 ${autoBadge("")}</span>
+        </div>
+        <div class="answer-box">${esc(v)||"<em style='color:#94a3b8'>No answer provided</em>"}</div>
       `).join("")}
 
-      <div class="section-title">Part 3 — Practical Task</div>
-      <div class="q-label">Task A — Keyword Research (10 marks)</div>
-      <div class="answer-box">${esc(x.practical?.a)||"<em style='color:#94a3b8'>No answer</em>"}</div>
-      <div class="q-label">Task B — On-Page Optimization (10 marks)</div>
-      <div class="answer-box">${esc(x.practical?.b)||"<em style='color:#94a3b8'>No answer</em>"}</div>
-      <div class="q-label">Task C — 30-Day SEO Strategy (10 marks)</div>
-      <div class="answer-box">${esc(x.practical?.c)||"<em style='color:#94a3b8'>No answer</em>"}</div>
+      <div class="section-title">Part 3 — Practical Task <span style="font-size:12px;font-weight:400;color:#64748b">(Auto-scored — Admin can override in table above)</span></div>
+
+      <div class="q-label" style="display:flex;align-items:center;justify-content:space-between">
+        <span>Task A — Keyword Research</span>
+        <span style="font-size:13px;font-weight:700;color:#0f766e">${pb.a!==undefined?pb.a:"-"}/10 ${autoBadge("")}</span>
+      </div>
+      <div class="answer-box">${esc(x.practical?.a)||"<em style='color:#94a3b8'>No answer provided</em>"}</div>
+
+      <div class="q-label" style="display:flex;align-items:center;justify-content:space-between">
+        <span>Task B — On-Page Optimization</span>
+        <span style="font-size:13px;font-weight:700;color:#0f766e">${pb.b!==undefined?pb.b:"-"}/10 ${autoBadge("")}</span>
+      </div>
+      <div class="answer-box">${esc(x.practical?.b)||"<em style='color:#94a3b8'>No answer provided</em>"}</div>
+
+      <div class="q-label" style="display:flex;align-items:center;justify-content:space-between">
+        <span>Task C — 30-Day SEO Strategy</span>
+        <span style="font-size:13px;font-weight:700;color:#0f766e">${pb.c!==undefined?pb.c:"-"}/10 ${autoBadge("")}</span>
+      </div>
+      <div class="answer-box">${esc(x.practical?.c)||"<em style='color:#94a3b8'>No answer provided</em>"}</div>
     </div>
   `;
   $("detail").scrollIntoView({behavior:"smooth"});
