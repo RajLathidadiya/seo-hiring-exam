@@ -1,7 +1,153 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SEO Executive Assessment</title><link rel="stylesheet" href="/style.css"></head><body>
-<header><b>SEO<span>Hire</span></b><small>SEO Executive Assessment</small></header><main>
-<section id="intro" class="card"><div><label>SEO EXECUTIVE HIRING</label><h1>Show us how you think about SEO.</h1><p>30 MCQs, 5 written questions and a practical SEO task. Recommended time: 60 minutes.</p></div>
-<form id="candidate"><input id="name" placeholder="Full name" required><input id="mobile" placeholder="Mobile number" required><input id="email" type="email" placeholder="Email" required><button>Start Assessment →</button></form></section>
-<section id="exam" hidden><div class="bar"><h2 id="hello"></h2><strong id="timer">60:00</strong></div><form id="paper"><div class="card"><h2>01 — SEO Fundamentals</h2><div id="mcqs"></div></div><div class="card"><h2>02 — Short Answers</h2><div id="shorts"></div></div><div class="card"><h2>03 — Practical SEO Task</h2><p class="scenario"><b>Scenario:</b> Premium villa & resort booking company in Udaipur. Target audience: couples, families and tourists.</p>
-<label>Task A — 10 relevant keywords + intent/priority<textarea name="a" required></textarea></label><label>Task B — SEO title, meta description, H1 and 3 H2s<textarea name="b" required></textarea></label><label>Task C — 30-day SEO plan covering technical SEO, keywords, content, on-page, internal links, local SEO, backlinks and reporting<textarea name="c" required></textarea></label></div><button>Submit Assessment</button></form></section>
-<section id="done" class="card center" hidden><div class="check">✓</div><h1>Submitted successfully.</h1><p id="doneText"></p></section></main><script src="/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEO Executive Assessment — Hiring Exam</title>
+<meta name="description" content="SEO Executive hiring exam — 30 MCQs, short answers and a practical task. Total 100 marks in 60 minutes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">SEO<span>Hire</span></div>
+  <small>SEO Executive Assessment</small>
+</header>
+
+<main>
+
+  <!-- INTRO -->
+  <section id="intro">
+    <div class="intro-card">
+      <div class="badge">HIRING EXAM</div>
+      <h1>Show us how you<br>think about SEO.</h1>
+      <div class="meta-row">
+        <div class="meta-item">⏱ <strong>60 Minutes</strong></div>
+        <div class="meta-item">📊 <strong>100 Marks</strong></div>
+        <div class="meta-item">✅ <strong>No Negative Marking</strong></div>
+      </div>
+      <div class="parts-overview">
+        <div class="part-pill">Part 1 — MCQ &nbsp;<span>30 marks</span></div>
+        <div class="part-pill">Part 2 — Short Answers &nbsp;<span>20 marks</span></div>
+        <div class="part-pill">Part 3 — Practical Task &nbsp;<span>30 marks</span></div>
+      </div>
+      <form id="candidate">
+        <input id="name" placeholder="Full Name" required autocomplete="name">
+        <input id="mobile" placeholder="Mobile Number" required autocomplete="tel">
+        <input id="email" type="email" placeholder="Email Address" required autocomplete="email">
+        <button type="submit">Start Assessment →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- EXAM -->
+  <section id="exam" hidden>
+    <div class="exam-topbar">
+      <div>
+        <div class="exam-name" id="hello"></div>
+        <div class="exam-sub">Complete all 3 parts before submitting.</div>
+      </div>
+      <div class="timer-box">
+        <div class="timer-label">TIME LEFT</div>
+        <div id="timer">60:00</div>
+      </div>
+    </div>
+
+    <form id="paper" novalidate>
+
+      <!-- PART 1 -->
+      <div class="part-card">
+        <div class="part-header">
+          <div>
+            <div class="part-label">PART 1</div>
+            <h2>SEO MCQs</h2>
+          </div>
+          <div class="marks-badge">30 Questions × 1 Mark = <strong>30 Marks</strong></div>
+        </div>
+        <div id="mcqs"></div>
+      </div>
+
+      <!-- PART 2 -->
+      <div class="part-card">
+        <div class="part-header">
+          <div>
+            <div class="part-label">PART 2</div>
+            <h2>Short Answer Questions</h2>
+          </div>
+          <div class="marks-badge">5 Questions × 4 Marks = <strong>20 Marks</strong></div>
+        </div>
+        <div id="shorts"></div>
+      </div>
+
+      <!-- PART 3 -->
+      <div class="part-card">
+        <div class="part-header">
+          <div>
+            <div class="part-label">PART 3</div>
+            <h2>Practical SEO Task</h2>
+          </div>
+          <div class="marks-badge"><strong>30 Marks</strong></div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-label">📌 SCENARIO</div>
+          <p><strong>Business:</strong> Premium Villa &amp; Resort Booking Company</p>
+          <p><strong>Location:</strong> Udaipur, Rajasthan</p>
+          <p><strong>Target Audience:</strong> Couples, families and tourists</p>
+          <p><strong>Main Service:</strong> Villa &amp; resort booking</p>
+        </div>
+
+        <div class="task-block">
+          <div class="task-header">
+            <span class="task-label">Task A</span>
+            <span class="task-marks">10 Marks</span>
+          </div>
+          <p class="task-desc"><strong>Keyword Research:</strong> Find 10 relevant keywords for this business. For each keyword mention: Keyword, Search Intent (Informational / Navigational / Transactional / Commercial) and Priority (High / Medium / Low).</p>
+          <textarea name="a" placeholder="Keyword 1 | Intent | Priority&#10;Keyword 2 | Intent | Priority&#10;...continue for all 10 keywords" required></textarea>
+        </div>
+
+        <div class="task-block">
+          <div class="task-header">
+            <span class="task-label">Task B</span>
+            <span class="task-marks">10 Marks</span>
+          </div>
+          <p class="task-desc"><strong>On-Page Optimization:</strong> Create the following for the homepage of this business:</p>
+          <textarea name="b" placeholder="SEO Title:&#10;&#10;Meta Description:&#10;&#10;H1:&#10;&#10;H2 #1:&#10;H2 #2:&#10;H2 #3:" required></textarea>
+        </div>
+
+        <div class="task-block">
+          <div class="task-header">
+            <span class="task-label">Task C</span>
+            <span class="task-marks">10 Marks</span>
+          </div>
+          <p class="task-desc"><strong>30-Day SEO Strategy:</strong> Create a 30-day SEO plan for this website. Your plan should cover: Technical SEO, Keyword Research, Content, On-Page Optimization, Internal Linking, Local SEO, Backlinks and Tracking/Reporting.</p>
+          <textarea name="c" placeholder="Week 1:&#10;Week 2:&#10;Week 3:&#10;Week 4:" required></textarea>
+        </div>
+      </div>
+
+      <div class="submit-area">
+        <p>Please review all answers before submitting. You cannot go back after submission.</p>
+        <button type="submit" id="submitBtn">Submit Assessment →</button>
+      </div>
+
+    </form>
+  </section>
+
+  <!-- DONE -->
+  <section id="done" hidden>
+    <div class="done-card">
+      <div class="check-circle">✓</div>
+      <h1>Submitted Successfully!</h1>
+      <p id="doneText"></p>
+      <p class="done-note">You may now close this window. Results will be communicated to you separately.</p>
+    </div>
+  </section>
+
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>

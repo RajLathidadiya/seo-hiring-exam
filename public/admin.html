@@ -1,1 +1,106 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SEO Hire Admin</title><link rel="stylesheet" href="/style.css"></head><body><header><b>SEO<span>Hire</span></b><small>Internal Admin</small></header><main><section class="card"><div class="adminbar"><div><label>ADMIN CONSOLE</label><h1>Candidate Dashboard</h1></div><input id="key" type="password" placeholder="Admin key"><button onclick="load()">Load Candidates</button></div><p id="msg"></p><div class="stats" id="stats"></div></section><section class="card"><input id="search" placeholder="Search candidates..." oninput="render()"><div class="table"><table><thead><tr><th>Candidate</th><th>MCQ</th><th>Written</th><th>Practical</th><th>Interview</th><th>Total</th><th>Status</th><th></th></tr></thead><tbody id="rows"></tbody></table></div></section><section class="card" id="detail" hidden></section></main><script src="/admin.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEO Hire — Admin Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">SEO<span>Hire</span></div>
+  <small>Internal Admin Panel</small>
+</header>
+
+<div style="max-width:1100px;margin:28px auto;padding:0 18px">
+  <div class="admin-topbar">
+    <h1>Candidate Dashboard</h1>
+    <div class="admin-auth">
+      <input id="key" type="password" placeholder="Enter Admin Key to load candidates">
+      <button onclick="load()">Load Candidates</button>
+    </div>
+    <p id="msg"></p>
+  </div>
+</div>
+
+<div id="adminMain" style="display:none">
+
+  <!-- STATS -->
+  <div class="stats-row" id="stats"></div>
+
+  <!-- TABLE -->
+  <div class="table-card">
+    <div class="search-bar">
+      <input id="search" placeholder="Search by name, email or mobile..." oninput="renderTable()">
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Candidate</th>
+          <th>Submitted</th>
+          <th>MCQ /30</th>
+          <th>Written /20</th>
+          <th>Practical /30</th>
+          <th>Interview /20</th>
+          <th>Total /100</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+
+  <!-- INTERVIEW PANEL -->
+  <div class="interview-card">
+    <h2>🎤 Interview Question Bank</h2>
+    <p class="sub">Use these questions during the live interview round. Score the candidate out of 20.</p>
+
+    <div class="int-group">
+      <div class="int-group-title">BASIC QUESTIONS</div>
+      <div class="int-q">Tell me about your SEO experience.</div>
+      <div class="int-q">Which SEO tools have you personally used?</div>
+      <div class="int-q">How do you perform keyword research?</div>
+      <div class="int-q">How do you decide keyword priority?</div>
+      <div class="int-q">Explain search intent with an example.</div>
+    </div>
+
+    <div class="int-group">
+      <div class="int-group-title">PRACTICAL QUESTIONS</div>
+      <div class="int-q">A page is indexed but not ranking. What will you check?</div>
+      <div class="int-q">A website has 1,000 pages but only 300 are indexed. What would you investigate?</div>
+      <div class="int-q">You have ₹0 budget for backlinks. What would you do?</div>
+      <div class="int-q">A competitor is ranking above us. How would you analyze them?</div>
+      <div class="int-q">How would you optimize a service page?</div>
+      <div class="int-q">What would you check in Google Search Console every week?</div>
+      <div class="int-q">How would you find technical SEO issues?</div>
+      <div class="int-q">What is your process for updating old content?</div>
+      <div class="int-q">How do you measure whether SEO work is successful?</div>
+      <div class="int-q">Tell me one SEO experiment you would run and how you would measure the result.</div>
+    </div>
+
+    <div class="int-group">
+      <div class="int-group-title">INTERVIEW SCORING — /20</div>
+      <div class="eval-grid">
+        <div class="eval-item"><label>SEO Fundamentals /4</label><input type="number" min="0" max="4" placeholder="0"></div>
+        <div class="eval-item"><label>Technical Understanding /4</label><input type="number" min="0" max="4" placeholder="0"></div>
+        <div class="eval-item"><label>Practical Thinking /4</label><input type="number" min="0" max="4" placeholder="0"></div>
+        <div class="eval-item"><label>Communication /4</label><input type="number" min="0" max="4" placeholder="0"></div>
+        <div class="eval-item"><label>Problem Solving /4</label><input type="number" min="0" max="4" placeholder="0"></div>
+      </div>
+      <p style="margin-top:12px;font-size:12px;color:#475569">Enter scores above for reference, then update the Interview Score in the candidate row.</p>
+    </div>
+  </div>
+
+  <!-- DETAIL VIEW -->
+  <div id="detail" style="display:none"></div>
+
+</div>
+
+<script src="/admin.js"></script>
+</body>
+</html>
